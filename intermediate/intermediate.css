@@ -9,3 +9,9 @@ songtitle{
  color: red;
  font-size: 2em;
 }
+
+.song div{
+ padding: 1em;
+ border: solid black 2px;
+ border-radius: 11%;
+}
