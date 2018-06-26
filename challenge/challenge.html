@@ -1,0 +1,56 @@
+<html>
+<title>challenge e-mail in database</title>
+<style>
+h1{
+ padding-left: 1.5em;
+}
+div{
+ padding-left: 5em;
+}
+
+.green{
+ color: green;
+}
+
+#message{
+ color: red;
+}
+</style>
+<body>
+<h1>e-mail in database</h1>
+<div>
+<p><input id="email" onchange="checkEmail()" type="text" placeholder="e-mail">
+   <!--<button onclick="checkEmail()">check</button>-->
+</p>
+</div>
+<div id="message">this e-mail is not inside the database</div>
+<script>
+ var myJSON;
+
+ function emailList(){
+  var x=new XMLHttpRequest();
+  x.onreadystatechange=function(){var data=x.responseText;myJSON=data;console.log(data);};
+  x.open("GET","showemail.php",true);
+  x.send(); 
+ }
+
+emailList();
+
+function checkEmail(){
+ var json=JSON.parse(myJSON);
+ //var json=[{"scalar":"","email":"alex.hebdo@msn.at"},{"scalar":"","email":"dummy@dot.com"}];
+ var email=document.getElementById('email').value;
+ var message=document.getElementById('message');
+ console.log(email); 
+ 
+ message.innerHTML="this e-mail is not inside the database";
+
+ json.map(function(x){if(x.email==email)
+                       {message.innerHTML="<span class='green'>e-mail is already in use</span>";}
+                     });
+}
+
+//setInterval(checkEmail,901);
+</script>
+</body>
+</html>
