@@ -2,13 +2,14 @@
 <body>
 <button onclick="doAJAX()">push me!</button>
 
-<div id="textfile"></div>
+<div id="textfile" class="verystrange"></div>
 
 <script>
 function doAJAX(){
  var x= new XMLHttpRequest();
  x.onreadystatechange = function (){renderTextFile(x.responseText);};
  x.open("GET","sample.txt",true);
+ //x.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
  x.send();
 }
 
