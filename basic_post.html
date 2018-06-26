@@ -1,0 +1,22 @@
+<html>
+<body>
+<button onclick="doAJAX()">push me!</button>
+
+<div id="textfile"></div>
+
+<script>
+function doAJAX(){
+ var x= new XMLHttpRequest();
+ x.onreadystatechange = function (){renderTextFile(x.responseText);};
+ x.open("POST","sample.txt",true);
+ x.send();
+}
+
+function renderTextFile(data){
+ var o=document.getElementById('textfile');
+ o.textContent=data;
+}
+
+</script>
+</body>
+</html>
